@@ -1,0 +1,23 @@
+This program is intended to compute the positions of astronomical
+objects given their mass, radius, and initial position and velocity.
+To do so it numerically solves the n-body problem, keeping track of
+an upper bound on the error, and shrinks the step size until the
+error is acceptable. It is called from the command line using:
+ ./PlanetarySimulation filename endtime max_error [start_step] [c_s]
+Filename is the path of an ASCII text file formatted as follows:
+ system_name number_of_objects coordinate_system
+ name mass position velocity
+ ...
+ name mass position velocity
+Coordinate system is the system of coordinates used to specify the
+position of each object, and is either "c" for Cartesian or "s" for
+(mathematical) spherical. The default is Cartesian. Position is the 
+position of the object in the specified coordinates, seperated by
+spaces, and velocity is the velocity of the object in Cartesian
+coordinates. Endtime is the length of time to simulate. Max_error is
+the largest acceptable error in the final position of any object. The
+optional argument start_step specifies the step size used initially
+by the program. Since the error produced by the algorithm is
+generally much smaller than the upper bound, it may be desirable to
+specify the step size and set max_error to 1e308, so it is ignored.
+C_s is the coordinate system which will be used to print the output.
